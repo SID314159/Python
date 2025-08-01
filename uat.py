@@ -81,104 +81,104 @@ class uat_auto():
         time.sleep(10)
 
 
+        try:  
+            run=1
+            while run<=count:
 
-        run=1
-        while run<=count:
-
-            top_level_container = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, 'root_pagemashupcontainer-2_ptcsbutton-24-bounding-box')))
-            time.sleep(3)
-            new_btn = top_level_container.find_element(By.CSS_SELECTOR, 'ptcs-button')
-            new_btn.click()
-            time.sleep(1.25)
-            toplvl_containers =['root_pagemashupcontainer-2_ptcstextfield-37-bounding-box','root_pagemashupcontainer-2_ptcstextfield-38-bounding-box','root_pagemashupcontainer-2_ptcstextfield-279-bounding-box']
-            for i in range (0,len(toplvl_containers)):
-                # Wait for the top-level container element to be present
                 top_level_container = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.ID, toplvl_containers[i])))
-                # Locate the shadow host element within the top-level container
-                shadow_host = top_level_container.find_element(By.CSS_SELECTOR, 'ptcs-textfield')
-                # Execute JavaScript to access the shadow DOM
-                shadow_root = driver.execute_script('return arguments[0].shadowRoot', shadow_host)
-                # Locate the input element inside the shadow DOM
-                input_element = shadow_root.find_element(By.CSS_SELECTOR, 'input#input')
-                # Scroll the element into view
-                driver.execute_script('arguments[0].scrollIntoView(true);', input_element)
-                # Use JavaScript to set the value directly
-                driver.execute_script(f'arguments[0].value = "Job_ID{char}{id}";', input_element)
-                # Manually trigger the input event
-                driver.execute_script('arguments[0].dispatchEvent(new Event("input", { bubbles: true }));', input_element)
-            id+=1
-            toplvl_ddcontainers =['root_pagemashupcontainer-2_ptcsdropdown-68-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-69-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-70-bounding-box',
-                                'root_pagemashupcontainer-2_ptcsdropdown-71-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-72-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-73-bounding-box',
-                                'root_pagemashupcontainer-2_ptcsdropdown-112-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-113-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-114-bounding-box',
-                                'root_pagemashupcontainer-2_ptcsdropdown-115-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-150-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-151-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-152-bounding-box']
-            for i in range (0,len(toplvl_ddcontainers)):
-                toplvl_ddcontainer = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.ID, toplvl_ddcontainers[i])))
-                params = toplvl_ddcontainer.find_element(By.CSS_SELECTOR, 'ptcs-dropdown')
-                #time.sleep(1)
-                if i==0:
-                    time.sleep(4)
-                    params.click()
-                elif i==9:
-                    time.sleep(3)
-                    params.click()
-                else:
-                    time.sleep(0.8)
-                    params.click()
-                
-                time.sleep(1.5)
-                iframe = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
-                
-                ext_id=toplvl_ddcontainers[i].replace('bounding-box','external-wc')
-
-                shadow_host= WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.ID, ext_id)))
-                shadow_root = driver.execute_script('return arguments[0].shadowRoot', shadow_host)
-
-                # Locate all list items within the shadow root and select random
-                list_items = shadow_root.find_elements(By.CSS_SELECTOR, "ptcs-list-item")
-
-                
-                if toplvl_ddcontainers[i]=='root_pagemashupcontainer-2_ptcsdropdown-68-bounding-box':
-                    item=list_items[array]
-                    actions = ActionChains(driver)
-                    actions.move_to_element(item).click().perform()
-
-                    # if run_count<msv_iterate:
-                    #     item=list_items[array]
-                    #     actions = ActionChains(driver)
-                    #     actions.move_to_element(item).click().perform()
-                    #     run_count+=1
+                EC.presence_of_element_located((By.ID, 'root_pagemashupcontainer-2_ptcsbutton-24-bounding-box')))
+                time.sleep(3)
+                new_btn = top_level_container.find_element(By.CSS_SELECTOR, 'ptcs-button')
+                new_btn.click()
+                time.sleep(1.25)
+                toplvl_containers =['root_pagemashupcontainer-2_ptcstextfield-37-bounding-box','root_pagemashupcontainer-2_ptcstextfield-38-bounding-box','root_pagemashupcontainer-2_ptcstextfield-279-bounding-box']
+                for i in range (0,len(toplvl_containers)):
+                    # Wait for the top-level container element to be present
+                    top_level_container = WebDriverWait(driver, 10).until(
+                        EC.presence_of_element_located((By.ID, toplvl_containers[i])))
+                    # Locate the shadow host element within the top-level container
+                    shadow_host = top_level_container.find_element(By.CSS_SELECTOR, 'ptcs-textfield')
+                    # Execute JavaScript to access the shadow DOM
+                    shadow_root = driver.execute_script('return arguments[0].shadowRoot', shadow_host)
+                    # Locate the input element inside the shadow DOM
+                    input_element = shadow_root.find_element(By.CSS_SELECTOR, 'input#input')
+                    # Scroll the element into view
+                    driver.execute_script('arguments[0].scrollIntoView(true);', input_element)
+                    # Use JavaScript to set the value directly
+                    driver.execute_script(f'arguments[0].value = "Job_ID{char}{id}";', input_element)
+                    # Manually trigger the input event
+                    driver.execute_script('arguments[0].dispatchEvent(new Event("input", { bubbles: true }));', input_element)
+                id+=1
+                toplvl_ddcontainers =['root_pagemashupcontainer-2_ptcsdropdown-68-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-69-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-70-bounding-box',
+                                    'root_pagemashupcontainer-2_ptcsdropdown-71-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-72-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-73-bounding-box',
+                                    'root_pagemashupcontainer-2_ptcsdropdown-112-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-113-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-114-bounding-box',
+                                    'root_pagemashupcontainer-2_ptcsdropdown-115-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-150-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-151-bounding-box','root_pagemashupcontainer-2_ptcsdropdown-152-bounding-box']
+                for i in range (0,len(toplvl_ddcontainers)):
+                    toplvl_ddcontainer = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.ID, toplvl_ddcontainers[i])))
+                    params = toplvl_ddcontainer.find_element(By.CSS_SELECTOR, 'ptcs-dropdown')
+                    #time.sleep(1)
+                    if i==0:
+                        time.sleep(4)
+                        params.click()
+                    elif i==9:
+                        time.sleep(3)
+                        params.click()
+                    else:
+                        time.sleep(0.8)
+                        params.click()
                     
-                    # else:
-                    #     run_count=0
-                    #     array+=1
-                    #     item=list_items[array]
-                    #     actions = ActionChains(driver)
-                    #     actions.move_to_element(item).click().perform()
-                    #     run_count+=1
-                else:
-                    random_item = random.choice(list_items)
-                    actions = ActionChains(driver)
-                    actions.move_to_element(random_item).click().perform()
+                    time.sleep(1.5)
+                    iframe = WebDriverWait(driver, 10).until(
+                        EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
+                    
+                    ext_id=toplvl_ddcontainers[i].replace('bounding-box','external-wc')
+
+                    shadow_host= WebDriverWait(driver, 10).until(
+                        EC.presence_of_element_located((By.ID, ext_id)))
+                    shadow_root = driver.execute_script('return arguments[0].shadowRoot', shadow_host)
+
+                    # Locate all list items within the shadow root and select random
+                    list_items = shadow_root.find_elements(By.CSS_SELECTOR, "ptcs-list-item")
+
+                    
+                    if toplvl_ddcontainers[i]=='root_pagemashupcontainer-2_ptcsdropdown-68-bounding-box':
+                        item=list_items[array]
+                        actions = ActionChains(driver)
+                        actions.move_to_element(item).click().perform()
+
+                        # if run_count<msv_iterate:
+                        #     item=list_items[array]
+                        #     actions = ActionChains(driver)
+                        #     actions.move_to_element(item).click().perform()
+                        #     run_count+=1
+                        
+                        # else:
+                        #     run_count=0
+                        #     array+=1
+                        #     item=list_items[array]
+                        #     actions = ActionChains(driver)
+                        #     actions.move_to_element(item).click().perform()
+                        #     run_count+=1
+                    else:
+                        random_item = random.choice(list_items)
+                        actions = ActionChains(driver)
+                        actions.move_to_element(random_item).click().perform()
 
 
 
-            # Submit button for each while loop
-            top_level_container = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, 'root_pagemashupcontainer-2_ptcsbutton-18-bounding-box')))
-            time.sleep(0.5)
-            submit_btn = top_level_container.find_element(By.CSS_SELECTOR, 'ptcs-button')
-            submit_btn.click()
-            time.sleep(6)
-            #while condition iterate
-            run+=1
-
-        time.sleep(5)
-        driver.quit()
-        sys.exit()
-    # Exit the application
+                # Submit button for each while loop
+                top_level_container = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.ID, 'root_pagemashupcontainer-2_ptcsbutton-18-bounding-box')))
+                time.sleep(0.5)
+                submit_btn = top_level_container.find_element(By.CSS_SELECTOR, 'ptcs-button')
+                submit_btn.click()
+                time.sleep(6)
+                #while condition iterate
+                run+=1
+        finally:
+            time.sleep(5)
+            driver.quit()
+            sys.exit()
+        # Exit the application
         
