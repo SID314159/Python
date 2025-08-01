@@ -1,0 +1,2 @@
+cd "OneDrive - Hitachi Energy\My_folder\Python"
+pyinstaller --onefile --add-binary="C:\Users\CM5824\OneDrive - Hitachi Energy\My_folder\Python\edgedriver_win64\msedgedriver.exe;."  --icon=SPACE_UAT.ico --noconsole SPACE_UAT.py    
